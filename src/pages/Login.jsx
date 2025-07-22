@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { loginThunk } from "../../redux/features/auth/authThunks";
+import { loginThunk } from "../redux/features/auth/authThunks";
 
-const Login = () => {
+export const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.google.accounts.id.initialize({
@@ -22,6 +24,7 @@ const Login = () => {
 
   const handleCredentialResponse = (response) => {
     dispatch(loginThunk(response.credential));
+    navigate("/");
   };
 
   return (
@@ -33,5 +36,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

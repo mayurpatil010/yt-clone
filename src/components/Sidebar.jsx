@@ -8,7 +8,7 @@ const SIDEBAR_ITEMS = [
   { title: "YouTube Music", icon: "library_music" },
 ];
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const isSidebarOpen = useSelector((state) => state.app.isSidebarOpen);
 
   const sidebarStyles = {
@@ -36,5 +36,3 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;

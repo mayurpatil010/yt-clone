@@ -1,23 +1,16 @@
 import { useSelector } from "react-redux";
 
 import "./App.css";
-import Header from "./components/Header";
-import MainContainer from "./components/MainContainer";
-import Login from "./components/auth/login";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const user = useSelector((state) => state.auth.user);
 
-  if (!user) {
-    return <Login />;
-  }
+  // if (!user) {
+  //   return <Login />;
+  // }
 
-  return (
-    <>
-      <Header></Header>
-      <MainContainer></MainContainer>
-    </>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

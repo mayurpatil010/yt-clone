@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { toggleSidebar } from "../redux/features/app/appSlice";
 import { logoutThunk } from "../redux/features/auth/authThunks";
 
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logoutThunk());
@@ -25,6 +27,7 @@ const Header = () => {
           src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
           alt="YouTube Logo"
           className="h-5"
+          onClick={() => navigate("/")}
         />
       </div>
       <div className="col-span-6 flex">
@@ -45,5 +48,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

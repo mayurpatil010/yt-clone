@@ -1,9 +1,9 @@
 import { useState, useEffect, memo } from "react";
-import Video from "./Video";
+import { Video } from "../components";
 
 const MemoizedVideo = memo(Video);
 
-const VideoContainer = () => {
+export const VideoContainer = memo(() => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,6 +22,8 @@ const VideoContainer = () => {
           throw new Error("Failed to fetch videos");
         }
         const data = await response.json();
+        console.log("data", data);
+
         setVideos(data.items);
       } catch (err) {
         setError(err.message);
@@ -53,6 +55,7 @@ const VideoContainer = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 gap-y-10">
       {videos?.map((video) => (
         <MemoizedVideo
+          id={video.id}
           key={video.id}
           channelName={video.snippet.channelTitle}
           title={video.snippet.title}
@@ -62,6 +65,4 @@ const VideoContainer = () => {
       ))}
     </div>
   );
-};
-
-export default memo(VideoContainer);
+});
