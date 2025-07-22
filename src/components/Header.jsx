@@ -1,9 +1,16 @@
-import { useDispatch } from "react-redux";
-import { toggleSidebar } from "../redux/slices/appSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import { toggleSidebar } from "../redux/features/app/appSlice";
+import { logoutThunk } from "../redux/features/auth/authThunks";
 
 const Header = () => {
   const dispatch = useDispatch();
-  console.log(import.meta.env.VITE_YOUTUBE_API_KEY);
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(logoutThunk());
+  };
+
   return (
     <div className="grid grid-cols-12 items-center p-2 bg-white">
       <div className="col-span-3 flex items-center gap-6">
@@ -31,7 +38,9 @@ const Header = () => {
         </button>
       </div>
       <div className="col-span-3 flex justify-end">
+        <span>{user?.name}</span>
         <span className="material-icons cursor-pointer">account_circle</span>
+        <button onClick={handleLogout}>logout</button>
       </div>
     </div>
   );

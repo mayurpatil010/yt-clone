@@ -14,7 +14,7 @@ const VideoContainer = () => {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=50&key=${
+          `${import.meta.env.VITE_YOUTUBE_API_URL}${
             import.meta.env.VITE_YOUTUBE_API_KEY
           }`
         );
